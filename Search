@@ -1,0 +1,22 @@
+const data = {
+    "Criminal Laws": ["Section 302: Punishment for murder.", "Section 376: Punishment for rape.", "Section 420: Cheating and dishonestly inducing delivery of property."],
+    "Civil Laws": ["Contracts: Agreements enforceable by law.", "Torts: Civil wrongs causing harm or loss.", "Consumer Protection: Rights of consumers and redressal mechanisms."],
+    "Property Laws": ["Transfer of Property Act, 1882: Governs the transfer of property ownership.", "Land Acquisition Act, 1894: Rules for acquiring land for public purposes.", "Indian Registration Act, 1908: Registration of property transactions."],
+    "Family Laws": ["Hindu Marriage Act, 1955: Governs marriage and divorce among Hindus.", "Muslim Personal Law: Regulates marriage, divorce, and inheritance for Muslims.", "Special Marriage Act, 1954: Provides for marriage between individuals of different religions."]
+};
+
+function performSearch() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    let results = [];
+
+    for (let category in data) {
+        data[category].forEach(item => {
+            if (item.toLowerCase().includes(query)) {
+                results.push(`${category}: ${item}`);
+            }
+        });
+    }
+
+    const resultsDiv = document.getElementById('searchResults');
+    resultsDiv.innerHTML = results.length ? `<ul>${results.map(result => `<li>${result}</li>`).join('')}</ul>` : 'No results found.';
+}
